@@ -1,0 +1,1185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Your Artist Name – Music & Poetry</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Official home for my music, lyrics, and poetry." />
+  <style>
+    :root {
+      --bg: #020617;
+      --bg-soft: #02081b;
+      --card: #020819;
+      --accent: #f97316;
+      --accent-soft: rgba(249,115,22,0.12);
+      --accent-strong: #f97316;
+      --text: #e5e7eb;
+      --muted: #9ca3af;
+      --border: #1f2937;
+      --radius-lg: 1.5rem;
+      --radius-pill: 999px;
+      --shadow-soft: 0 18px 45px rgba(0,0,0,0.65);
+      --shadow-glow: 0 0 30px rgba(249,115,22,0.35);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background:
+        radial-gradient(circle at top, #0b1120, #020617 45%),
+        radial-gradient(circle at bottom, #111827, #020617 60%);
+      color: var(--text);
+      min-height: 100vh;
+    }
+
+    .noise {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      opacity: 0.12;
+      mix-blend-mode: soft-light;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 160 160' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='1.2' numOctaves='4' stitchTiles='noStitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.6'/%3E%3C/svg%3E");
+      z-index: -1;
+    }
+
+    header {
+      position: relative;
+      padding: 1.5rem 1.2rem 2rem;
+      max-width: 1080px;
+      margin: 0 auto;
+    }
+
+    nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      margin-bottom: 2rem;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .logo-mark {
+      width: 2.4rem;
+      height: 2.4rem;
+      border-radius: 40%;
+      background: radial-gradient(circle at 20% 0, #fed7aa, #f97316 55%, #7c2d12 100%);
+      box-shadow: var(--shadow-glow);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.3rem;
+      font-weight: 700;
+      color: #020617;
+    }
+
+    .logo-text {
+      display: flex;
+      flex-direction: column;
+      line-height: 1.1;
+    }
+
+    .logo-text span:first-child {
+      font-weight: 600;
+      letter-spacing: 0.04em;
+    }
+
+    .logo-text span:last-child {
+      font-size: 0.8rem;
+      color: var(--muted);
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      flex-wrap: wrap;
+    }
+
+    .nav-links a {
+      font-size: 0.88rem;
+      text-decoration: none;
+      color: var(--muted);
+      padding: 0.45rem 0.9rem;
+      border-radius: var(--radius-pill);
+      border: 1px solid transparent;
+      transition: all 0.15s ease;
+    }
+
+    .nav-links a:hover {
+      color: var(--text);
+      border-color: var(--border);
+      background: rgba(15,23,42,0.7);
+    }
+
+    .nav-cta {
+      padding: 0.45rem 1.1rem;
+      border-radius: var(--radius-pill);
+      border: 1px solid rgba(248,250,252,0.12);
+      background: linear-gradient(90deg, rgba(248,250,252,0.09), rgba(15,23,42,0.4));
+      color: var(--text);
+      font-size: 0.86rem;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+
+    .nav-cta span {
+      font-size: 1.0rem;
+    }
+
+    .hero {
+      display: grid;
+      grid-template-columns: minmax(0, 3fr) minmax(0, 2.4fr);
+      gap: 2.2rem;
+      align-items: center;
+      padding: 1rem 0 2.5rem;
+    }
+
+    .hero-text h1 {
+      font-size: clamp(2.4rem, 4vw, 3.2rem);
+      margin: 0 0 0.75rem;
+      line-height: 1.1;
+    }
+
+    .hero-gradient {
+      background: linear-gradient(120deg, #fed7aa, #fb923c, #f97316);
+      -webkit-background-clip: text;
+      color: transparent;
+    }
+
+    .hero-text p {
+      max-width: 32rem;
+      color: var(--muted);
+      margin: 0 0 1.4rem;
+      font-size: 0.97rem;
+    }
+
+    .hero-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-bottom: 1.6rem;
+    }
+
+    .tag {
+      font-size: 0.76rem;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      padding: 0.35rem 0.8rem;
+      border-radius: var(--radius-pill);
+      border: 1px solid rgba(148,163,184,0.5);
+      color: var(--muted);
+      background: rgba(15,23,42,0.8);
+    }
+
+    .tag-accent {
+      background: var(--accent-soft);
+      color: #fed7aa;
+      border-color: var(--accent-strong);
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+      align-items: center;
+    }
+
+    .btn-primary,
+    .btn-ghost {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45rem;
+      padding: 0.75rem 1.4rem;
+      border-radius: var(--radius-pill);
+      font-size: 0.9rem;
+      text-decoration: none;
+      border: 1px solid transparent;
+      cursor: pointer;
+      transition: transform 0.12s ease, box-shadow 0.12s ease, background 0.12s ease, border-color 0.12s ease;
+      white-space: nowrap;
+    }
+
+    .btn-primary {
+      background: radial-gradient(circle at top left, #fed7aa, #f97316 60%, #7c2d12 100%);
+      color: #0b1120;
+      font-weight: 600;
+      box-shadow: 0 14px 35px rgba(249,115,22,0.55);
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 18px 45px rgba(249,115,22,0.7);
+      background: radial-gradient(circle at top left, #ffedd5, #fb923c 70%, #7c2d12 100%);
+    }
+
+    .btn-ghost {
+      border-color: rgba(148,163,184,0.6);
+      background: rgba(15,23,42,0.8);
+      color: var(--muted);
+    }
+
+    .btn-ghost:hover {
+      border-color: rgba(148,163,184,0.9);
+      color: var(--text);
+      background: rgba(15,23,42,1);
+    }
+
+    .hero-actions-note {
+      font-size: 0.8rem;
+      color: var(--muted);
+      width: 100%;
+      margin-top: 0.4rem;
+    }
+
+    .hero-card {
+      background: radial-gradient(circle at top, rgba(15,23,42,0.8), #020617 60%);
+      border-radius: 2rem;
+      border: 1px solid rgba(148,163,184,0.4);
+      padding: 1.3rem 1.2rem 1.4rem;
+      box-shadow: var(--shadow-soft);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-card::before {
+      content: "";
+      position: absolute;
+      inset: -40%;
+      background:
+        radial-gradient(circle at 20% 0%, rgba(249,115,22,0.32), transparent 60%),
+        radial-gradient(circle at 90% 100%, rgba(96,165,250,0.22), transparent 55%);
+      opacity: 0.7;
+      pointer-events: none;
+    }
+
+    .hero-card-inner {
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero-card-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 0.75rem;
+    }
+
+    .hero-card-title {
+      font-size: 0.9rem;
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      color: rgba(249,250,251,0.8);
+    }
+
+    .hero-card-badge {
+      font-size: 0.75rem;
+      padding: 0.2rem 0.6rem;
+      border-radius: var(--radius-pill);
+      background: rgba(15,23,42,0.7);
+      border: 1px solid rgba(148,163,184,0.5);
+      color: var(--muted);
+    }
+
+    .track-card {
+      margin-top: 0.5rem;
+      border-radius: 1.25rem;
+      padding: 0.85rem 0.9rem;
+      background: rgba(15,23,42,0.9);
+      border: 1px solid rgba(51,65,85,0.9);
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: 0.75rem;
+      align-items: center;
+    }
+
+    .track-cover {
+      width: 3rem;
+      height: 3rem;
+      border-radius: 1rem;
+      background: radial-gradient(circle at 20% 0%, #fed7aa, #f97316, #4b5563);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .track-cover::after {
+      content: "";
+      position: absolute;
+      inset: 20%;
+      border-radius: 50%;
+      border: 2px solid rgba(15,23,42,0.86);
+    }
+
+    .track-meta {
+      display: flex;
+      flex-direction: column;
+      gap: 0.1rem;
+    }
+
+    .track-meta strong {
+      font-size: 0.9rem;
+    }
+
+    .track-meta small {
+      font-size: 0.78rem;
+      color: var(--muted);
+    }
+
+    .track-actions {
+      grid-column: 1 / -1;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 0.35rem;
+      gap: 0.75rem;
+      flex-wrap: wrap;
+    }
+
+    .track-play {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      padding: 0.45rem 0.8rem;
+      border-radius: var(--radius-pill);
+      border: 1px solid rgba(148,163,184,0.7);
+      font-size: 0.8rem;
+      cursor: pointer;
+      background: rgba(15,23,42,0.85);
+      color: var(--text);
+      text-decoration: none;
+      transition: background 0.12s ease, border-color 0.12s ease, transform 0.12s ease;
+    }
+
+    .track-play:hover {
+      border-color: var(--accent-strong);
+      background: rgba(15,23,42,1);
+      transform: translateY(-0.5px);
+    }
+
+    .track-links {
+      display: flex;
+      gap: 0.35rem;
+      flex-wrap: wrap;
+    }
+
+    .track-link {
+      font-size: 0.75rem;
+      padding: 0.35rem 0.7rem;
+      border-radius: var(--radius-pill);
+      text-decoration: none;
+      border: 1px solid rgba(148,163,184,0.5);
+      color: var(--muted);
+      background: rgba(15,23,42,0.7);
+      transition: all 0.12s ease;
+    }
+
+    .track-link:hover {
+      border-color: rgba(248,250,252,0.8);
+      color: var(--text);
+      background: rgba(15,23,42,1);
+    }
+
+    .hero-card-footer {
+      margin-top: 1rem;
+      font-size: 0.75rem;
+      color: var(--muted);
+      display: flex;
+      justify-content: space-between;
+      gap: 0.75rem;
+      flex-wrap: wrap;
+    }
+
+    main {
+      max-width: 1080px;
+      margin: 0 auto;
+      padding: 0 1.2rem 3rem;
+    }
+
+    section {
+      margin-bottom: 2.4rem;
+    }
+
+    .section-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: 1rem;
+      margin-bottom: 1.1rem;
+    }
+
+    .section-kicker {
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      color: var(--muted);
+    }
+
+    .section-title {
+      font-size: 1.35rem;
+      margin: 0.2rem 0 0;
+    }
+
+    .section-subtitle {
+      font-size: 0.85rem;
+      color: var(--muted);
+      max-width: 28rem;
+    }
+
+    .pill-link {
+      font-size: 0.8rem;
+      padding: 0.35rem 0.75rem;
+      border-radius: var(--radius-pill);
+      border: 1px solid rgba(148,163,184,0.5);
+      color: var(--muted);
+      text-decoration: none;
+      white-space: nowrap;
+    }
+
+    .pill-link:hover {
+      border-color: rgba(148,163,184,0.9);
+      color: var(--text);
+      background: rgba(15,23,42,0.9);
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 1.2rem;
+    }
+
+    @media (max-width: 900px) {
+      .hero {
+        grid-template-columns: minmax(0, 1fr);
+      }
+      .hero-card {
+        order: -1;
+      }
+      .grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    @media (max-width: 640px) {
+      nav {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+      .nav-links {
+        width: 100%;
+        justify-content: space-between;
+      }
+      .hero {
+        padding-bottom: 2.1rem;
+      }
+      .grid {
+        grid-template-columns: minmax(0, 1fr);
+      }
+    }
+
+    .card {
+      border-radius: var(--radius-lg);
+      border: 1px solid var(--border);
+      background: radial-gradient(circle at top, rgba(15,23,42,0.86), #020617 70%);
+      padding: 1rem 1rem 1.1rem;
+      box-shadow: var(--shadow-soft);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .card::before {
+      content: "";
+      position: absolute;
+      inset: -40%;
+      background:
+        radial-gradient(circle at 0 0, rgba(248,250,252,0.04), transparent 55%),
+        radial-gradient(circle at 100% 100%, rgba(15,23,42,0.8), transparent 50%);
+      opacity: 0.75;
+      pointer-events: none;
+    }
+
+    .card-inner {
+      position: relative;
+      z-index: 1;
+    }
+
+    .card-label {
+      font-size: 0.7rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 0.2rem;
+    }
+
+    .card-title {
+      font-size: 0.98rem;
+      margin-bottom: 0.3rem;
+    }
+
+    .card-meta {
+      font-size: 0.78rem;
+      color: var(--muted);
+      margin-bottom: 0.5rem;
+    }
+
+    .card-body {
+      font-size: 0.86rem;
+      color: rgba(226,232,240,0.92);
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.3rem;
+      padding: 0.35rem 0.6rem;
+      border-radius: var(--radius-pill);
+      background: rgba(15,23,42,0.8);
+      border: 1px solid rgba(148,163,184,0.5);
+      font-size: 0.75rem;
+      color: var(--muted);
+    }
+
+    .lyrics-list {
+      display: flex;
+      flex-direction: column;
+      gap: 0.7rem;
+    }
+
+    details {
+      border-radius: 1rem;
+      border: 1px solid rgba(51,65,85,0.9);
+      background: rgba(15,23,42,0.9);
+      padding: 0.7rem 0.85rem;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.4);
+    }
+
+    summary {
+      list-style: none;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.75rem;
+      font-size: 0.9rem;
+    }
+
+    summary::-webkit-details-marker {
+      display: none;
+    }
+
+    .summary-text {
+      display: flex;
+      flex-direction: column;
+      gap: 0.15rem;
+    }
+
+    .summary-title {
+      font-weight: 500;
+    }
+
+    .summary-meta {
+      font-size: 0.76rem;
+      color: var(--muted);
+    }
+
+    .summary-icon {
+      font-size: 0.9rem;
+      color: var(--muted);
+    }
+
+    details[open] .summary-icon {
+      transform: rotate(90deg);
+    }
+
+    .lyrics-body {
+      margin-top: 0.55rem;
+      padding-top: 0.55rem;
+      border-top: 1px dashed rgba(75,85,99,0.9);
+      font-size: 0.88rem;
+      white-space: pre-wrap;
+      line-height: 1.5;
+      color: rgba(226,232,240,0.96);
+    }
+
+    .lyrics-language {
+      font-size: 0.75rem;
+      font-style: italic;
+      color: var(--muted);
+      margin-bottom: 0.3rem;
+    }
+
+    .poetry-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 1.1rem;
+    }
+
+    @media (max-width: 900px) {
+      .poetry-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    @media (max-width: 640px) {
+      .poetry-grid {
+        grid-template-columns: minmax(0, 1fr);
+      }
+    }
+
+    .poem {
+      font-size: 0.9rem;
+      line-height: 1.6;
+      white-space: pre-wrap;
+    }
+
+    .poem-title {
+      font-weight: 500;
+      margin-bottom: 0.2rem;
+    }
+
+    .poem-meta {
+      font-size: 0.75rem;
+      color: var(--muted);
+      margin-bottom: 0.4rem;
+    }
+
+    .about-layout {
+      display: grid;
+      grid-template-columns: minmax(0, 1.2fr) minmax(0, 1.1fr);
+      gap: 1.6rem;
+    }
+
+    @media (max-width: 900px) {
+      .about-layout {
+        grid-template-columns: minmax(0, 1fr);
+      }
+    }
+
+    .about-text {
+      font-size: 0.9rem;
+      line-height: 1.7;
+      color: rgba(226,232,240,0.95);
+    }
+
+    .about-badges {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.45rem;
+      margin-top: 0.75rem;
+    }
+
+    .contact-card {
+      display: flex;
+      flex-direction: column;
+      gap: 0.7rem;
+      font-size: 0.9rem;
+    }
+
+    .contact-row {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      flex-wrap: wrap;
+    }
+
+    .contact-label {
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      color: var(--muted);
+    }
+
+    .contact-value a {
+      color: #e5e7eb;
+      text-decoration: none;
+      border-bottom: 1px dashed rgba(156,163,175,0.7);
+    }
+
+    .contact-value a:hover {
+      border-bottom-style: solid;
+    }
+
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 1.4rem 1.2rem 1.8rem;
+      max-width: 1080px;
+      margin: 0 auto;
+      font-size: 0.8rem;
+      color: var(--muted);
+      display: flex;
+      justify-content: space-between;
+      gap: 0.75rem;
+      flex-wrap: wrap;
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 0.6rem;
+      flex-wrap: wrap;
+    }
+
+    .footer-links a {
+      color: var(--muted);
+      text-decoration: none;
+    }
+
+    .footer-links a:hover {
+      color: var(--text);
+    }
+
+    .muted {
+      color: var(--muted);
+    }
+  </style>
+</head>
+<body>
+  <div class="noise" aria-hidden="true"></div>
+
+  <header>
+    <nav>
+      <div class="logo">
+        <div class="logo-mark">♪</div>
+        <div class="logo-text">
+          <span>Your Artist Name</span>
+          <span>Music • Lyrics • Poetry</span>
+        </div>
+      </div>
+      <div class="nav-links">
+        <a href="#music">Music</a>
+        <a href="#lyrics">Lyrics</a>
+        <a href="#poetry">Poetry</a>
+        <a href="#about">About</a>
+        <a href="#contact">Contact</a>
+        <a class="nav-cta" href="#music">
+          Listen &amp; support
+          <span>↗</span>
+        </a>
+      </div>
+    </nav>
+
+    <div class="hero">
+      <div class="hero-text">
+        <div class="hero-tags">
+          <span class="tag tag-accent">Independent Artist</span>
+          <span class="tag">Original music</span>
+          <span class="tag">Lyrics &amp; poetry</span>
+        </div>
+        <h1>
+          <span class="hero-gradient">Songs that read like poems.</span><br />
+          Poems that sound like songs.
+        </h1>
+        <p>
+          Welcome to my little corner of the internet—where music, lyrics, and poetry
+          live together. Stream my songs, read along with the words, and wander through
+          the poems that grew between the notes.
+        </p>
+
+        <div class="hero-actions">
+          <a class="btn-primary" href="#music">
+            ▶ Start with the latest track
+          </a>
+          <a class="btn-ghost" href="#poetry">
+            Read a poem first
+          </a>
+          <div class="hero-actions-note">
+            Tip: bookmark this page to come back when there’s a new song or poem.
+          </div>
+        </div>
+      </div>
+
+      <aside class="hero-card">
+        <div class="hero-card-inner">
+          <div class="hero-card-header">
+            <div class="hero-card-title">Featured track</div>
+            <div class="hero-card-badge">New release</div>
+          </div>
+          <div class="track-card">
+            <div class="track-cover"></div>
+            <div class="track-meta">
+              <strong>Song Title – Single</strong>
+              <small>Release year · Genre / mood</small>
+            </div>
+            <div class="track-actions">
+              <a class="track-play" href="YOUR-STREAMING-LINK-HERE" target="_blank">
+                ▶ Play on your favorite platform
+              </a>
+              <div class="track-links">
+                <a class="track-link" href="#lyrics">Read lyrics</a>
+                <a class="track-link" href="#music">More music</a>
+                <a class="track-link" href="#contact">Licensing / contact</a>
+              </div>
+            </div>
+          </div>
+          <div class="hero-card-footer">
+            <span>Best experienced with headphones.</span>
+            <span>Independent &amp; listener supported. ♡</span>
+          </div>
+        </div>
+      </aside>
+    </div>
+  </header>
+
+  <main>
+    <!-- MUSIC SECTION -->
+    <section id="music">
+      <div class="section-header">
+        <div>
+          <div class="section-kicker">Music</div>
+          <h2 class="section-title">Listen &amp; support the songs</h2>
+          <p class="section-subtitle">
+            Stream, download, or purchase my music. The buttons below can point to Bandcamp,
+            SoundCloud, Spotify, Apple Music, or wherever you share your work.
+          </p>
+        </div>
+        <a class="pill-link" href="YOUR-MAIN-MUSIC-STORE-LINK" target="_blank">
+          Open full discography ↗
+        </a>
+      </div>
+
+      <div class="grid">
+        <!-- Release 1 -->
+        <article class="card">
+          <div class="card-inner">
+            <div class="card-label">Single</div>
+            <div class="card-title">Song Title #1</div>
+            <div class="card-meta">Year · Genre / mood · 1 track</div>
+            <div class="card-body">
+              A short description of this song. What inspired it, what it feels like,
+              or where it belongs in your story as an artist.
+            </div>
+            <div style="margin-top:0.7rem; display:flex; flex-wrap:wrap; gap:0.4rem;">
+              <a class="track-play" href="BANDCAMP-OR-SPOTIFY-LINK" target="_blank">▶ Listen</a>
+              <a class="track-link" href="BANDCAMP-DIRECT-BUY-LINK" target="_blank">$ Buy track</a>
+              <a class="track-link" href="#lyrics">Lyrics</a>
+            </div>
+          </div>
+        </article>
+
+        <!-- Release 2 -->
+        <article class="card">
+          <div class="card-inner">
+            <div class="card-label">EP / Mini-Album</div>
+            <div class="card-title">Project Name</div>
+            <div class="card-meta">Year · Style · 4–6 tracks</div>
+            <div class="card-body">
+              Describe this project like a chapter in a book. What themes are inside?
+              What kind of listener might love it?
+            </div>
+            <div style="margin-top:0.7rem; display:flex; flex-wrap:wrap; gap:0.4rem;">
+              <a class="track-play" href="EP-STREAM-LINK" target="_blank">▶ Listen</a>
+              <a class="track-link" href="EP-BUY-LINK" target="_blank">$ Buy EP</a>
+              <a class="track-link" href="#lyrics">Lyrics</a>
+            </div>
+          </div>
+        </article>
+
+        <!-- Release 3 -->
+        <article class="card">
+          <div class="card-inner">
+            <div class="card-label">Coming soon</div>
+            <div class="card-title">Next release</div>
+            <div class="card-meta">Working title · in progress</div>
+            <div class="card-body">
+              Tease a future release, or invite people to follow you on your favorite platform
+              so they don’t miss what’s next.
+            </div>
+            <div style="margin-top:0.7rem; display:flex; flex-wrap:wrap; gap:0.4rem;">
+              <a class="track-link" href="YOUR-INSTAGRAM-OR-TIKTOK" target="_blank">Follow updates</a>
+              <a class="track-link" href="#contact">Join mailing list</a>
+            </div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- LYRICS SECTION -->
+    <section id="lyrics">
+      <div class="section-header">
+        <div>
+          <div class="section-kicker">Lyrics</div>
+          <h2 class="section-title">Read along with the songs</h2>
+          <p class="section-subtitle">
+            Open the lyrics while you listen, or explore them on their own. Add translations,
+            notes, or stories behind each song if you’d like.
+          </p>
+        </div>
+        <span class="badge">
+          ✍︎ Tip: you can mix multiple languages here
+        </span>
+      </div>
+
+      <div class="lyrics-list">
+        <!-- Song 1 lyrics -->
+        <details>
+          <summary>
+            <div class="summary-text">
+              <span class="summary-title">Song Title #1</span>
+              <span class="summary-meta">Lyrics · Click to open</span>
+            </div>
+            <span class="summary-icon">›</span>
+          </summary>
+          <div class="lyrics-body">
+            <div class="lyrics-language">Language: English</div>
+            <!-- Replace this block with your real lyrics -->
+            Verse 1  
+            Line 2 of the verse  
+            Line 3 of the verse  
+
+            Pre-Chorus  
+            Another line here  
+
+            Chorus  
+            Big feeling, simple words  
+            Another line that everyone remembers
+          </div>
+        </details>
+
+        <!-- Song 2 lyrics with translation example -->
+        <details>
+          <summary>
+            <div class="summary-text">
+              <span class="summary-title">Song Title #2</span>
+              <span class="summary-meta">Lyrics · with translation</span>
+            </div>
+            <span class="summary-icon">›</span>
+          </summary>
+          <div class="lyrics-body">
+            <div class="lyrics-language">Language: Original</div>
+            <!-- Original language lyrics -->
+            Original language line 1  
+            Original language line 2  
+            Original language line 3  
+
+            <br />
+            <div class="lyrics-language">Language: English translation</div>
+            <!-- Translation -->
+            Translation line 1  
+            Translation line 2  
+            Translation line 3  
+          </div>
+        </details>
+
+        <!-- Add more <details> blocks for more songs -->
+      </div>
+    </section>
+
+    <!-- POETRY SECTION -->
+    <section id="poetry">
+      <div class="section-header">
+        <div>
+          <div class="section-kicker">Poetry</div>
+          <h2 class="section-title">Poems from between the songs</h2>
+          <p class="section-subtitle">
+            Some words never needed a melody. Here are a few pieces from the quiet
+            spaces, the late nights, and the in-between places.
+          </p>
+        </div>
+        <span class="badge">
+          ⊹ Rotate poems in and out whenever you like
+        </span>
+      </div>
+
+      <div class="poetry-grid">
+        <!-- Poem 1 -->
+        <article class="card">
+          <div class="card-inner">
+            <div class="poem-title">Poem Title #1</div>
+            <div class="poem-meta">Short description · Theme or mood</div>
+            <div class="poem">
+My body is an echo  
+of every song I never finished,  
+soft chords resting  
+in the margins of a notebook  
+no one else will read.
+            </div>
+          </div>
+        </article>
+
+        <!-- Poem 2 -->
+        <article class="card">
+          <div class="card-inner">
+            <div class="poem-title">Poem Title #2</div>
+            <div class="poem-meta">Written on a certain night</div>
+            <div class="poem">
+You call it silence,  
+but I hear verses in it—  
+breathing in the pauses,  
+learning that some answers  
+arrive as questions.
+            </div>
+          </div>
+        </article>
+
+        <!-- Poem 3 -->
+        <article class="card">
+          <div class="card-inner">
+            <div class="poem-title">Poem Title #3</div>
+            <div class="poem-meta">For the people who stayed</div>
+            <div class="poem">
+If you are reading this,  
+you are part of the chorus—  
+the soft hum behind every risk,  
+the steady hand  
+behind every trembling note.
+            </div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- ABOUT SECTION -->
+    <section id="about">
+      <div class="section-header">
+        <div>
+          <div class="section-kicker">About</div>
+          <h2 class="section-title">Behind the songs &amp; poems</h2>
+        </div>
+      </div>
+
+      <div class="about-layout">
+        <div class="about-text">
+          <!-- Replace this with your real artist bio -->
+          <p>
+            I’m <strong>Your Artist Name</strong>, a songwriter and poet who lives in the
+            space where melody and language become the same thing. I write songs that feel
+            like diary entries, and poems that sound like they could be sung under
+            low-lit skies.
+          </p>
+          <p>
+            This site is my home base: a place where you can stream the music, read the
+            lyrics like little stories, and wander through the poems that never needed
+            instruments—only breath, memory, and time.
+          </p>
+          <p>
+            If something here finds you at the right moment, let it stay. Share it with
+            someone else who might need it. That’s how these quiet things travel.
+          </p>
+
+          <div class="about-badges">
+            <span class="badge">Self-released music</span>
+            <span class="badge">Original lyrics</span>
+            <span class="badge">Reader-supported poetry</span>
+          </div>
+        </div>
+
+        <aside class="card">
+          <div class="card-inner contact-card">
+            <div class="card-label">New here?</div>
+            <div class="card-title">Start with these:</div>
+            <ul class="card-body" style="padding-left:1.1rem; margin:0;">
+              <li>Your most popular song</li>
+              <li>A poem that feels like “you”</li>
+              <li>A lyric you’re proud of</li>
+            </ul>
+            <div class="muted" style="margin-top:0.6rem; font-size:0.8rem;">
+              You can update this list anytime as your work grows or your favorites change.
+            </div>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <!-- CONTACT SECTION -->
+    <section id="contact">
+      <div class="section-header">
+        <div>
+          <div class="section-kicker">Contact</div>
+          <h2 class="section-title">Stay in touch</h2>
+          <p class="section-subtitle">
+            For collaborations, commissions, licensing, or just kind words about how a
+            song or poem found you—reach out below.
+          </p>
+        </div>
+      </div>
+
+      <div class="about-layout">
+        <article class="card">
+          <div class="card-inner contact-card">
+            <div class="contact-row">
+              <span class="contact-label">Email</span>
+              <span class="contact-value">
+                <a href="mailto:you@example.com">you@example.com</a>
+              </span>
+            </div>
+            <div class="contact-row">
+              <span class="contact-label">Social</span>
+              <span class="contact-value">
+                <a href="YOUR-INSTAGRAM" target="_blank">Instagram</a> ·
+                <a href="YOUR-TIKTOK" target="_blank">TikTok</a> ·
+                <a href="YOUR-YOUTUBE" target="_blank">YouTube</a>
+              </span>
+            </div>
+            <div class="contact-row">
+              <span class="contact-label">Support</span>
+              <span class="contact-value">
+                <a href="YOUR-PAYPAL-OR-KOFI" target="_blank">Tip jar / support</a>
+              </span>
+            </div>
+            <p class="muted">
+              You can also invite people to join a mailing list or private update circle
+              using a simple form from a service like Substack, MailerLite, etc. Later on,
+              you can embed or link that here.
+            </p>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="card-inner">
+            <div class="card-label">Little note</div>
+            <div class="card-title">A message for listeners</div>
+            <p class="card-body">
+              This work exists because you pressed play, read a poem to the end, or
+              shared a lyric with someone you love. Thank you for being here—and for
+              giving quiet art a place to live.
+            </p>
+          </div>
+        </article>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div>
+      &copy; <span id="year"></span> Your Artist Name. All music, lyrics, and poems by you.
+    </div>
+    <div class="footer-links">
+      <a href="#music">Music</a>
+      <span>·</span>
+      <a href="#lyrics">Lyrics</a>
+      <span>·</span>
+      <a href="#poetry">Poetry</a>
+    </div>
+  </footer>
+
+  <script>
+    // Set current year in footer
+    document.getElementById("year").textContent = new Date().getFullYear();
+
+    // Smooth scroll for internal links
+    document.querySelectorAll('a[href^="#"]').forEach(function (anchor) {
+      anchor.addEventListener("click", function (e) {
+        var targetId = this.getAttribute("href");
+        if (targetId.length > 1) {
+          var target = document.querySelector(targetId);
+          if (target) {
+            e.preventDefault();
+            window.scrollTo({
+              top: target.offsetTop - 80,
+              behavior: "smooth"
+            });
+          }
+        }
+      });
+    });
+  </script>
+</body>
+</html>
